@@ -1,0 +1,1203 @@
+:root {
+  --primary-red: #e00; /* Your existing main red */
+  --dark-red: #8B0000; /* Deeper red for titles/accents */
+  --accent-gold: #b4a078; /* Subtle gold/bronze for highlights */
+  --light-text: #555; /* Common light text color */
+  --faded-text-color: #888; /* For faded texts */
+}
+
+/* Kemudian, ganti penggunaan warna di bawah ini dengan variabel */
+/* Contoh perubahan di beberapa tempat: */
+
+/* Header Buttons */
+.header-button.bordered {
+  background-color: #fff;
+  color: var(--primary-red);
+  border: 1px solid var(--primary-red);
+}
+.header-button.filled {
+  background-color: var(--primary-red);
+  color: #fff;
+  border: 1px solid var(--primary-red);
+}
+
+/* TOC Sidebar */
+#toc-sidebar h3 {
+  color: var(--primary-red);
+}
+#toc-sidebar a:hover, #toc-sidebar a.active {
+  color: var(--primary-red);
+}
+#toc-toggle-button {
+  background-color: var(--primary-red);
+}
+
+/* Location Section */
+.location-details .location-header-line {
+  background-color: var(--primary-red); /* Menggunakan red */
+}
+.location-details .more-button {
+  background-color: var(--primary-red);
+}
+.location-details .more-button:hover {
+  background-color: var(--dark-red); /* Darker red on hover */
+}
+
+/* Social Share */
+.social-share .share-buttons .email {
+  background-color: var(--accent-gold); /* Contoh penggunaan gold/bronze */
+}
+
+/* Lightbox Close & Source */
+.lightbox-close:hover {
+  color: var(--primary-red);
+}
+/* Untuk lightbox source, mungkin Anda ingin tetap hitam/putih, atau coba aksen gold */
+/* .lightbox-source { background-color: rgba(var(--accent-gold-rgb), 0.5); } */
+/* (Untuk rgba, Anda perlu variabel terpisah untuk R,G,B nilai) */
+
+/* Untuk teks yang ingin terlihat lebih pudar/transparan */
+.faded-text {
+  color: #888; /* Mengubah warna teks menjadi abu-abu terang */
+}
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  margin: 0;
+  padding: 0;
+  /* Tambahkan latar belakang tekstur kertas */
+  background-color: #fcf8f0; /* Soft, warm off-white */
+  background-image: url('data:image/svg+xml,%3Csvg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath fill="%23e4d9c7" d="M0 0h8v8H0zM8 8h8v8H8z"/%3E%3C/svg%3E'); /* Subtle geometric pattern for paper texture feel */
+  background-size: 8px 8px; /* Adjust size of the pattern */
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Ensure strong text is always bold */
+strong {
+    font-weight: 700 !important; /* Explicitly use 700 for robust bold */
+}
+
+/* Ensure emphasized text is always italic */
+em {
+    font-style: italic !important; /* Explicitly use italic for robust emphasis */
+}
+
+/* Style for Pinyin: italic only, no bold */
+.pinyin {
+    font-weight: normal; /* Change to normal weight, effectively removing bold */
+    font-style: italic; /* Keep it italic */
+    font-family: "Noto Sans TC", sans-serif; /* Keep sans-serif font for Pinyin */
+}
+
+/* (Jika Anda hanya ingin Pinyin tebal saja, tanpa miring, gunakan ini:
+.pinyin {
+    font-weight: 700;
+    font-style: normal; // Ensure it's not italic
+    font-family: "Noto Sans TC", sans-serif;
+}
+) */
+
+.chinese-text-serif {
+    font-family: "Noto Serif TC", serif;
+}
+
+/* Font Awesome is typically handled by its own CSS, but good to have fallback */
+.fas, .fab {
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands", sans-serif;
+}
+
+/* Pastikan teks yang dibold selalu muncul sebagai bold *
+/* ==================== Header Section Styles ==================== */
+.header-container {
+  width: 100%;
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto;
+  padding: 20px 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  z-index: 1000;
+  transition: all 0.3s ease; /* Smooth transition for sticky effect */
+}
+
+/* Sticky Header */
+.header-container.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 5px 0; /* Reduced padding when sticky */
+}
+
+.header-container.sticky .header-nav {
+  display: none; /* Sembunyikan nav saat sticky pada desktop, akan ditangani oleh JS */
+}
+
+.header-container.sticky .header-top {
+  margin-bottom: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.header-container.sticky .header-logo-area {
+    margin-bottom: 0;
+}
+.header-container.sticky .main-site-logo {
+    max-width: 200px; /* Perkecil logo gambar saat sticky */
+}
+
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 30px; /* Space between top and nav */
+  transition: all 0.3s ease; /* Smooth transition for sticky effect */
+}
+
+.header-top-left,
+.header-top-right {
+  display: flex;
+  gap: 10px;
+}
+
+/* Button Styles */
+.header-button {
+  font-family: "Noto Sans TC", sans-serif;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.header-button.bordered {
+  background-color: #fff;
+  color: #e00; /* Red text */
+  border: 1px solid #e00; /* Red border */
+}
+
+.header-button.filled {
+  background-color: #e00; /* Red background */
+  color: #fff;
+  border: 1px solid #e00; /* Red border */
+}
+
+.header-button:hover {
+  opacity: 0.8;
+}
+
+/* Logo Area Styles */
+.header-logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-site-logo {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Navigation Styles */
+.header-nav { /* This targets the <nav id="main-nav-mobile"> */
+    display: none; /* Crucial: Hide by default for mobile-first approach */
+    flex-direction: column; /* Stack nav items vertically */
+    position: absolute; /* Make it an overlay */
+    top: 100%; /* Position right below the sticky header */
+    left: 0;
+    width: 100%;
+    background-color: #f9f9f9; /* Light background for the menu */
+    border-top: 1px solid #ddd;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    z-index: 999; /* Below sticky header, above main content */
+    padding: 10px 0;
+    transition: all 0.3s ease; /* Smooth transition for opening/closing */
+}
+
+/* When the .active class is added by JS, show the mobile nav */
+.header-nav.active {
+    display: flex;
+}
+
+/* Styling for the UL inside the nav (applies to both mobile and desktop ul) */
+.header-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* On mobile, this will be flex-direction: column (from parent .header-nav) */
+    display: flex; /* Ensures list items are displayed */
+    flex-wrap: wrap; /* Allows wrapping on desktop */
+}
+
+/* Styling for LI elements in the nav */
+.header-nav li {
+    position: relative;
+    padding: 10px 0; /* Padding for mobile list items */
+    font-size: 1.1em; /* Mobile font size */
+    color: #333; /* Darker text for mobile menu */
+    white-space: nowrap; /* Prevent text wrapping within li on desktop */
+    width: 100%; /* Full width for mobile list items */
+    text-align: center;
+    border-bottom: 1px dashed #eee; /* Divider for mobile items */
+}
+.header-nav li:last-child {
+    border-bottom: none; /* No border for the last item on mobile */
+}
+.header-nav li:not(:last-child)::after {
+    content: none; /* Remove vertical divider in mobile menu */
+}
+
+/* Styling for A elements (links) in the nav */
+.header-nav li a {
+    font-family: "Noto Sans TC", sans-serif;
+    text-decoration: none;
+    color: inherit; /* Inherit color from parent li */
+    transition: color 0.3s ease, background-color 0.3s ease;
+    display: block; /* Make link fill the entire li for easier tapping on mobile */
+    padding: 5px 0;
+}
+.header-nav li a:hover {
+    color: #fff;
+    background-color: var(--primary-red); /* Red background on hover for mobile */
+}
+
+/* Hide mobile menu toggle button by default */
+#mobile-menu-toggle {
+    display: none;
+}
+
+/* Mobile Nav Overlay / Toggle Styling */
+@media (min-width: 993px) {
+    /* Show the main nav on desktop */
+    .header-nav { /* This targets the <nav id="main-nav-mobile"> */
+        display: flex !important; /* Force display flex for desktop */
+        position: static; /* No absolute positioning on desktop */
+        top: auto;
+        width: auto;
+        background-color: transparent; /* No background on desktop */
+        border: none;
+        box-shadow: none;
+        z-index: auto;
+        padding: 0;
+        margin-top: 30px; /* Space from header top content */
+    }
+
+    /* Adjust ul for desktop layout */
+    .header-nav ul {
+        flex-direction: row; /* Horizontal for desktop */
+        justify-content: center;
+    }
+
+    /* Adjust li for desktop layout */
+    .header-nav li {
+        width: auto; /* Auto width for list items */
+        padding: 0 15px; /* Adjust padding for desktop links */
+        border-bottom: none; /* No border for desktop list items */
+        font-size: 18px; /* Desktop font size */
+        color: #555; /* Desktop link color */
+    }
+    .header-nav li:not(:last-child)::after {
+        content: "|"; /* Restore vertical divider on desktop */
+        color: #999;
+    }
+
+    /* Adjust a for desktop layout */
+    .header-nav li a {
+        padding: 0; /* No extra padding on desktop links */
+        color: inherit; /* Inherit from li */
+    }
+    .header-nav li a:hover {
+        background-color: transparent; /* No background hover on desktop */
+        color: var(--primary-red);
+    }
+
+    /* Hide the mobile toggle button on desktop */
+    #mobile-menu-toggle {
+        display: none !important;
+    }
+
+    /* On desktop, when header is sticky, hide the nav */
+    .header-container.sticky .header-nav {
+        display: none !important; /* IMPORTANT: Hide desktop nav when sticky */
+    }
+}
+
+/* Adjust sticky header behavior on mobile to avoid double nav */
+@media (max-width: 992px) {
+    .header-container.sticky .header-nav {
+        display: none; /* Make sure the full nav is hidden when sticky on mobile */
+    }
+    .header-container:not(.sticky) .header-nav {
+        /* This ensures nav is displayed as a block below header-top
+           when not sticky on smaller screens, before JS hides/shows it. */
+        display: none; /* Hidden by default, JS toggles it */
+    }
+}
+
+/* --- MOBILE-SPECIFIC STYLING (max-width: 992px) --- */
+@media (max-width: 992px) {
+    /* Show mobile toggle button */
+    #mobile-menu-toggle {
+        display: block;
+        margin-left: 10px;
+    }
+
+    /* Adjust header top for wrapping on mobile */
+    .header-top {
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: space-around; /* Distribute items */
+        margin-bottom: 15px; /* Reduce margin */
+    }
+    .header-top-left, .header-top-right {
+        flex-basis: 100%; /* Take full width */
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .header-top-right {
+        margin-bottom: 0;
+        display: flex; /* Ensure buttons and toggle button are aligned */
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* When header is sticky on mobile, ensure the nav is hidden */
+    .header-container.sticky .header-nav {
+        display: none !important; /* Very important to override active class on sticky mobile */
+    }
+
+    /* ... Sisanya dari aturan responsif Anda (header-container, main-content-wrapper, dll.) ... */
+}
+
+/* ==================== Main Content and Layout Styles ==================== */
+.main-content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 40px auto;
+  gap: 30px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Main Article Styling */
+main article {
+  flex-grow: 1;
+  max-width: 700px; /* Adjusted for a wider main content area */
+  box-sizing: border-box;
+  padding: 30px; /* Added padding to match the article feel */
+  background-color: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 8px;
+}
+
+main h1,
+main h2,
+main h3 {
+  font-family: "Playfair Display", serif;
+  color: #333;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 700;
+  text-align: center; /* Center align all main titles */
+}
+
+/* Styling for the main H1 title with multi-line English and Chinese */
+.article-main-title {
+    font-family: "Playfair Display", serif; /* English part uses Playfair */
+    font-size: 2.1em; /* Default English title size */
+    font-weight: 700;
+    color: #333; /* Default dark text color */
+    text-align: center;
+    line-height: 1.2; /* Tightly spaced lines */
+    margin-bottom: 5px; /* Reduce margin below H1 for tighter grouping with subtitle */
+    position: relative; /* For potential future decorative elements */
+}
+
+.article-main-title .chinese-title-hanzi {
+    font-family: "Noto Serif TC", serif; /* Explicitly use Noto Serif TC for Hanzi */
+    font-size: 0.7em; /* Slightly smaller than English for visual balance, adjust as needed */
+    font-weight: 500; /* Lighter weight for Hanzi if desired, or 700 for strong */
+    color: #555; /* Slightly lighter color for Hanzi */
+    line-height: 1.4; /* Slightly more relaxed line-height for Chinese characters */
+    display: block; /* Ensure it's on its own line */
+    margin-top: 5px; /* Small space between English and Chinese parts */
+}
+
+/* Adjust subtitle detail for visual balance */
+.article-subtitle-detail {
+    text-align: center;
+    font-size: 0.95em; /* Slightly smaller font for subtle detail */
+    color: #888;
+    margin-top: 10px; /* Space from the H1 */
+    margin-bottom: 40px; /* More space before the next section */
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+/* Responsive adjustments for main title */
+@media (max-width: 768px) {
+    .article-main-title {
+        font-size: 2em;
+    }
+    .article-main-title .chinese-title-hanzi {
+        font-size: 0.7em;
+    }
+    .article-subtitle-detail {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-main-title {
+        font-size: 1.6em;
+    }
+    .article-main-title .chinese-title-hanzi {
+        font-size: 0.6em;
+    }
+}
+
+main h2 {
+  font-size: 2em;
+  line-height: 1.3;
+  margin-top: 2em; /* More space above H2 for clear sectioning */
+}
+
+main h3 {
+  font-size: 1.5em;
+  text-align: left; /* Sub-headings within sections can be left-aligned */
+  margin-top: 1.5em;
+  color: #555; /* Slightly lighter color for sub-headings */
+}
+
+main p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  margin-bottom: 1em;
+  font-family: "Playfair Display", serif; /* Use Playfair Display for a classic feel */
+  font-weight: 400; /* Ensure it's not too bold, adjust if needed */
+  color: #383838; /* Slightly darker grey for body text, better contrast */
+}
+
+/* Jika Anda memiliki teks Mandarin yang masih muncul di paragraf utama (meskipun di artikel ini tidak ada),
+   Anda mungkin perlu kelas terpisah untuk itu, contoh: */
+/* .chinese-paragraph {
+    font-family: "Noto Serif TC", serif;
+} */
+
+main blockquote {
+    font-family: "Playfair Display", serif; /* Elegant font for blockquote */
+    font-size: 1.2em;
+    font-style: italic;
+    color: #444;
+    border-left: 5px solid #e00; /* Red border for emphasis */
+    padding: 15px 20px;
+    margin: 30px 0;
+    background-color: #fcfcfc;
+}
+
+main blockquote footer {
+    font-size: 0.8em;
+    text-align: right;
+    margin-top: 10px;
+    color: #666;
+    font-style: normal;
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+/* ==================== Table of Contents (TOC) Styles ==================== */
+#toc-sidebar {
+  flex-shrink: 0;
+  width: 250px;
+  position: sticky;
+  top: 100px; /* Adjust based on header height, when it becomes sticky */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#toc-sidebar h3 {
+  font-family: "Noto Sans TC", sans-serif;
+  margin-top: 0;
+  color: #e00; /* Changed to red to match theme */
+  text-align: center;
+}
+
+#toc-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#toc-sidebar li {
+  margin-bottom: 8px;
+}
+
+#toc-sidebar a {
+  font-family: "Noto Sans TC", sans-serif;
+  text-decoration: none;
+  color: #555;
+  font-size: 0.95em;
+  display: block;
+  padding: 4px 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+#toc-sidebar a:hover {
+  color: #e00;
+  transform: translateX(5px);
+}
+
+#toc-sidebar a.active {
+  color: #e00;
+  font-weight: bold;
+}
+
+#toc-toggle-button {
+  display: none;
+  padding: 10px 15px;
+  background-color: #e00; /* Changed to red to match theme */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 1em;
+  width: 100%;
+  text-align: center;
+}
+
+/* ==================== Image Gallery Styles ==================== */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Lightbox Overlay */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.gallery-caption {
+  font-size: 0.9em;
+  color: #555;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.4;
+  font-family: "Noto Sans TC", sans-serif;
+  padding: 0 5px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 5px solid white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.lightbox-close:hover {
+  color: #e00;
+}
+
+/* Lightbox Source Link */
+.lightbox-source {
+    position: absolute;
+    bottom: 20px;
+    color: white;
+    font-size: 0.9em;
+    padding: 8px 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+.lightbox-source:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+}
+
+
+/* ==================== Interactive Glossary Styles (Accordion) ==================== */
+.glossary-section {
+  margin: 40px 0;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.glossary-item {
+  margin-bottom: 10px;
+}
+
+.glossary-header {
+  background-color: #f5f5f5;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.glossary-header:hover {
+  background-color: #ececec;
+}
+
+.glossary-header h4 {
+  margin: 0;
+  color: #333;
+  font-family: "Noto Sans TC", sans-serif; /* For glossary terms */
+}
+
+.glossary-header .icon {
+  font-size: 1.2em;
+  transition: transform 0.3s ease;
+}
+
+.glossary-header.active .icon {
+  transform: rotate(90deg); /* Rotate arrow when active */
+}
+
+.glossary-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  padding: 0 15px;
+}
+
+.glossary-content.active {
+  max-height: 150px; /* Adjust based on max expected content height */
+  padding: 15px;
+}
+.glossary-content p {
+    font-size: 1em; /* Adjust font size for glossary content */
+    line-height: 1.6;
+}
+
+/* ==================== Social Share Buttons ==================== */
+.social-share {
+  margin: 40px 0;
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.social-share p {
+  margin-top: 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #555;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.social-share .share-buttons a {
+  display: inline-block;
+  margin: 0 10px;
+  color: #fff;
+  font-size: 1.5em;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.social-share .share-buttons a:hover {
+  transform: translateY(-3px);
+}
+
+.social-share .share-buttons .facebook {
+  background-color: #3b5998;
+}
+.social-share .share-buttons .twitter {
+  background-color: #00acee;
+}
+.social-share .share-buttons .linkedin {
+  background-color: #0e76a8;
+}
+.social-share .share-buttons .email {
+  background-color: #c25e30;
+}
+
+/* ==================== Scroll Animations ==================== */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==================== Back to Top Button ==================== */
+#back-to-top {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #e00;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+  background-color: #c20000;
+  transform: translateY(-2px);
+}
+
+#back-to-top.show {
+  display: block;
+}
+
+/* ==================== LOCATION Section Styles ==================== */
+.location-section {
+  background-color: #fff;
+  padding: 60px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.location-content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.location-details {
+  flex-shrink: 0;
+  width: 300px;
+  text-align: left;
+  padding-top: 20px;
+}
+
+.location-details .location-header-line {
+  width: 60px;
+  height: 3px;
+  background-color: #e00;
+  margin-bottom: 20px;
+  margin-left: 0;
+}
+
+.location-details h2 {
+  font-family: "Playfair Display", serif; /* Changed to Playfair Display */
+  font-size: 2em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.location-details p {
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.location-details p i {
+  margin-right: 10px;
+  color: #555;
+}
+
+.location-details .more-button {
+  display: inline-block;
+  background-color: #e00;
+  color: white;
+  padding: 10px 25px;
+  text-decoration: none;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: bold;
+  border-radius: 3px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.location-details .more-button:hover {
+  background-color: #c20000;
+}
+
+/* CONTAINER BARU untuk PETA dan GAMBAR SAMPING */
+.location-visuals-container {
+  display: flex;
+  gap: 20px;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.location-map {
+  flex-basis: 60%;
+  min-width: 300px;
+  height: 300px;
+  background-color: #eee;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.location-map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.location-side-images {
+  flex-basis: calc(40% - 20px);
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.location-side-images .side-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== FOOTER Styles ==================== */
+footer {
+  background-color: #333;
+  color: #bbb;
+  padding: 30px 0;
+  font-size: 0.9em;
+  font-family: "Noto Sans TC", sans-serif;
+  text-align: center; /* Ensure copyright is centered */
+}
+
+/* Removed .footer-content-wrapper and .footer-links as they are not present in current HTML */
+/* If you add more footer content, these might be needed */
+.footer-copyright {
+  white-space: nowrap; /* Prevent copyright text from breaking on small screens */
+}
+
+
+/* ==================== Responsive Adjustments ==================== */
+@media (max-width: 992px) {
+  .main-content-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  #toc-sidebar {
+    position: static;
+    width: 90%;
+    max-width: 600px;
+    margin-bottom: 30px;
+  }
+
+  #toc-sidebar ul {
+    display: none;
+    padding-top: 10px;
+  }
+
+  #toc-sidebar.active ul {
+    display: block;
+  }
+
+  #toc-toggle-button {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  /* Header adjustments for 992px */
+  .header-container {
+      padding: 10px 0;
+  }
+  .header-container.sticky {
+      padding: 5px 0;
+  }
+  .header-top {
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px; /* Adjust margin */
+  }
+
+  .header-top-left,
+  .header-top-right {
+    justify-content: center;
+  }
+
+  .header-nav {
+      /* Keep nav visible but wrap */
+      display: block !important; /* Override 'display: none' from sticky class */
+      margin-top: 15px;
+  }
+  .header-nav ul {
+      justify-content: center;
+      gap: 10px;
+  }
+  .header-nav li {
+      padding: 0 8px;
+      font-size: 16px;
+  }
+  .header-nav li:not(:last-child)::after {
+      content: ""; /* Remove vertical divider on smaller screens */
+  }
+
+
+  /* Location section adjustments */
+  .location-content-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .location-details {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    padding-top: 0;
+  }
+  .location-details .location-header-line {
+    margin: 0 auto 20px auto;
+  }
+
+  .location-visuals-container {
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .location-map {
+    width: 100%;
+    flex-basis: auto;
+    height: 300px;
+  }
+
+  .location-side-images {
+    width: 100%;
+    flex-basis: auto;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .location-side-images .side-image {
+    width: 48%;
+    height: 120px;
+    max-width: 200px;
+  }
+
+  .footer-copyright {
+    text-align: center;
+    white-space: normal; /* Allow copyright text to wrap */
+  }
+}
+
+@media (max-width: 768px) {
+  .main-site-logo {
+    max-width: 250px;
+  }
+
+  main h1 {
+    font-size: 2.2em;
+  }
+
+  main h2 {
+    font-size: 1.6em;
+  }
+
+  main h3 {
+    font-size: 1.3em;
+  }
+
+  main p {
+      font-size: 1em;
+  }
+
+  .gallery-item img {
+    height: 180px;
+  }
+
+  /* Header adjustments for 768px */
+  .header-top {
+      gap: 10px;
+  }
+  .header-nav li {
+      font-size: 14px;
+      padding: 0 5px;
+  }
+  .header-button {
+      padding: 6px 12px;
+      font-size: 13px;
+  }
+
+  /* Location section adjustments */
+  .location-details h2 {
+    font-size: 1.8em;
+  }
+  .location-details p {
+    font-size: 0.9em;
+  }
+  .location-map {
+    height: 250px;
+  }
+  .location-side-images .side-image {
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-site-logo {
+    max-width: 180px;
+  }
+
+  main h1 {
+  font-size: 1.8em;
+  line-height: 1.1;
+  }
+
+  main h2 {
+    font-size: 1.4em;
+  }
+  main h3 {
+      font-size: 1.1em;
+  }
+
+  blockquote {
+      font-size: 1em;
+      padding: 10px 15px;
+  }
+
+  .header-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-nav li {
+    padding: 10px 0;
+    font-size: 13px;
+  }
+
+  .header-button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  #back-to-top {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  /* Location section adjustments */
+  .location-section {
+    padding: 40px 0;
+  }
+  .location-details h2 {
+    font-size: 1.6em;
+  }
+  .location-details p {
+    font-size: 0.85em;
+  }
+  .location-map {
+    height: 200px;
+  }
+  .location-side-images {
+      flex-direction: column; /* Stack side images vertically on very small mobile */
+      align-items: center;
+  }
+  .location-side-images .side-image {
+    width: 80%; /* Take more width when stacked */
+    height: 100px;
+    max-width: 250px; /* Limit max width to prevent stretching too wide */
+  }
+
+  footer {
+    padding: 20px 0;
+    font-size: 0.8em;
+  }
+}

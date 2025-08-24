@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Articles - Declaration Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f7f7f7;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .articles {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .article-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .article-card h2 {
+            margin-top: 0;
+        }
+
+        .article-card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .article-card a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1f2937;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>History Articles</h1>
+        <p>Explore different versions of the Declaration</p>
+    </header>
+
+    <main>
+        <div class="articles">
+            <div class="article-card">
+                <h2>Article 1: Literal Version Early Draft</h2>
+                <p>The first version of the Declaration with historical context.</p>
+                <a href="firstversion/index.html">Read More →</a>
+            </div>
+
+            <div class="article-card">
+                <h2>Article 2: Literal Version</h2>
+                <p>The updated version after significant edits and changes.</p>
+                <a href="literalversion/index.html">Read More →</a>
+            </div>
+
+            <div class="article-card">
+                <h2>Article 3: Narative Version</h2>
+                <p>The official and final version of the Declaration.</p>
+                <a href="narativeversion/index.html">Read More →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>2025 History Project | Powered by GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
